@@ -417,16 +417,33 @@ export async function getStaticProps() {
   const postsDirectory = path.join(process.cwd(), "content");
   const filenames = fs.readdirSync(postsDirectory);
 
-  const posts: Post[] = filenames.map((filename) => {
-    const filePath = path.join(postsDirectory, filename);
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data } = matter(fileContents);
+  const requiredFields = ["title", "date", "author", "ingredients", "steps"];
 
-    return {
-      slug: filename.replace(".md", ""),
-      frontMatter: data as Post["frontMatter"],
-    };
-  });
+  const posts: Post[] = filenames
+    .filter((filename) => filename !== "rating.md") // Exclude "rating.md"
+    .map((filename) => {
+      const filePath = path.join(postsDirectory, filename);
+      const fileContents = fs.readFileSync(filePath, "utf8");
+      const { data } = matter(fileContents);
+
+      // Validate the required fields exist in the file
+      const hasAllRequiredFields =
+        requiredFields.every((field) => field in data) && 
+        Array.isArray(data.ingredients) && 
+        Array.isArray(data.steps);
+
+      // If the structure is invalid, return null
+      if (!hasAllRequiredFields) {
+        console.warn(`Ignoring file ${filename}: missing required fields.`);
+        return null;
+      }
+
+      return {
+        slug: filename.replace(".md", ""),
+        frontMatter: data as Post["frontMatter"],
+      };
+    })
+    .filter((post): post is Post => post !== null); // Remove null entries from the array
 
   return {
     props: {

@@ -54,6 +54,11 @@ steps:
 ---
 ```
 
+The following field are required for each recipe : `title`, `date`, `author`, `ingredients` and `steps`.
+
+The `videoUrl:` contains an embeded YouTube video URL.
+If you want to add a video who's not embeded you should modifiy [`[slug].js here`](https://github.com/CodingHedi/bonapp-hedi-recipe-blog/blob/main/pages/posts/%5Bslug%5D.js#L98).
+
 Then, add a `rating.md` to the `/content` directory. Here's the file :
 
 ```yaml
