@@ -1,12 +1,12 @@
 ---
-title: "Spaghetti Aglio e Olio"
-date: "2025-01-02"
-author: "Jean Jack"
-image: "thumbnail/spaghetti.png"
-description: "A classic Italian pasta dish."
+title: "Flan"
+date: "2012-03-14"
+author: "Hédi"
+image: "thumbnail/flan.png"
+description: "Flan is a creamy and smooth dessert, often flavored with vanilla, that comes in several versions. There are two main types: flan pâtissier (baked custard tart) and flan aux œufs (egg custard or crème caramel)."
 videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA"
-tags: ["gluten", "pasta", "vegan"]
-servings: 2
+tags: ["dessert"]
+servings: 6
 ingredients:
   - name: Spaghetti
     quantity: 200

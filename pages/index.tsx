@@ -8,7 +8,7 @@ import fuzzy from "fuzzy";
 import { useTheme } from "@/context/ThemeContext";
 import HeroCarousel from "@/components/HeroCarousel";
 import Card from "@/components/Card";
-import { Post } from "@/pages/Post";
+import { Post } from "@/utils/Post";
 
 type HomeProps = {
   posts: Post[];
@@ -27,7 +27,7 @@ export default function Home({ posts }: HomeProps) {
   const tagSelectRef = useRef<SelectInstance<Option, true>>(null);
   const { isDarkMode } = useTheme();
 
-  const styles = {
+  const styles: { [key: string]: React.CSSProperties } = {
     container: {
       backgroundColor: isDarkMode ? "#121212" : "#f9f9f9",
       color: isDarkMode ? "#ffffff" : "#000000",
@@ -166,7 +166,7 @@ export default function Home({ posts }: HomeProps) {
     }
   };
 
-  const featuredRecipes = getFeaturedRecipes(posts);
+  const featuredRecipes = getFeaturedRecipes(posts, "bySlug", { slugs: ["bread", "flan", "ragout"] });
 
   const authorOptions: Option[] = [
     { value: "", label: "Auteurs" },
@@ -422,15 +422,14 @@ export async function getStaticProps() {
   const posts: Post[] = filenames
     .filter((filename) => filename !== "rating.md") // Exclude "rating.md"
     .map((filename) => {
+      console.log(filename);
       const filePath = path.join(postsDirectory, filename);
       const fileContents = fs.readFileSync(filePath, "utf8");
       const { data } = matter(fileContents);
 
       // Validate the required fields exist in the file
       const hasAllRequiredFields =
-        requiredFields.every((field) => field in data) && 
-        Array.isArray(data.ingredients) && 
-        Array.isArray(data.steps);
+        requiredFields.every((field) => field in data) && Array.isArray(data.ingredients) && Array.isArray(data.steps);
 
       // If the structure is invalid, return null
       if (!hasAllRequiredFields) {

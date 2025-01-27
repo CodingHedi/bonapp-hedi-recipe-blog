@@ -1,11 +1,11 @@
 ---
-title: "Spaghetti Aglio e Olio"
-date: "2025-01-02"
-author: "Jean Jack"
-image: "thumbnail/spaghetti.png"
-description: "A classic Italian pasta dish."
+title: "Chocolate Babka"
+date: "2025-01-06"
+author: "Hédi"
+image: "thumbnail/babka.png"
+description: "Babka is a braided sweet bread of Poland. It is recognizable by its marbled appearance and its generous chocolate filling."
 videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA"
-tags: ["gluten", "pasta", "vegan"]
+tags: ["gluten", "dessert", "chocolate"]
 servings: 2
 ingredients:
   - name: Spaghetti

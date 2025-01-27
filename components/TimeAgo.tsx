@@ -54,7 +54,7 @@ export default function TimeAgo({ date }: TimeAgoProps) {
     setFormattedTime(formatTimeAgo(date));
   }, [date]);
 
-  const styles = {
+  const styles: { [key: string]: React.CSSProperties } = {
     date: {
       paddingLeft: "5px",
       color: isDarkMode ? "#696969" : "#dedcdc",

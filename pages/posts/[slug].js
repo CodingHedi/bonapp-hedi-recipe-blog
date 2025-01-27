@@ -4,9 +4,12 @@ import path from "path";
 import matter from "gray-matter";
 import { useTheme } from "@/context/ThemeContext";
 import RatingSystem from "@/components/RatingSystem";
+import Comments from "@/components/Comments";
+
+
 
 export default function RecipePage({ frontMatter }) {
-    const [servings, setServings] = useState(1);
+    const [servings, setServings] = useState(frontMatter.servings || 1);
     const { isDarkMode } = useTheme();
     const videoRef = useRef(null);
     const playerRef = useRef(null);
@@ -46,6 +49,19 @@ export default function RecipePage({ frontMatter }) {
         step: {
             marginBottom: "10px",
             cursor: "pointer",
+        },
+        timestamp: {
+            color: isDarkMode ? "#3f84e499" : "#395473d9",
+        },
+        title: {
+            fontSize: "2.7rem",
+            fontWeight: "bold",
+            marginBottom: "10px",
+        },
+        desc: {
+            color: isDarkMode ? "#ccc" : "#717b8e",
+            fontSize: " 1.2rem",
+            fontWeight: "italic",
         },
         tags: {
             margin: "10px 0",
@@ -124,6 +140,8 @@ export default function RecipePage({ frontMatter }) {
     };
 
     const parseTimestamp = (timestamp) => {
+        //[XX:XX]  -> [1:25], [04:16], [1:5], [02:02].
+
         console.log("Parsing timestamp:", timestamp);
         const parts = timestamp.split(":").map(Number);
         return parts.reduce((total, part) => total * 60 + part, 0);
@@ -164,7 +182,7 @@ export default function RecipePage({ frontMatter }) {
                                 >
                                     Step {index + 1}: {step.replace(/\[\d+:\d+\]/, "").trim()}
                                     {timestamp && (
-                                        <span style={{ color: "blue" }}> ({timestamp})</span>
+                                        <span style={styles.timestamp}> ({timestamp})</span>
                                     )}
                                 </p>
                             );
@@ -174,8 +192,8 @@ export default function RecipePage({ frontMatter }) {
                 {/* Right Column */}
                 <div style={styles.rightColumn}>
                     {/* Recipe presentation */}
-                    <h1>{frontMatter.title}</h1>
-                    <p>{frontMatter.description}</p>
+                    <h1 style={styles.title}>{frontMatter.title}</h1>
+                    <p styles={styles.desc}>{frontMatter.description}</p>
                     {/* Rating System */}
                     <RatingSystem slug={frontMatter.slug} />
                     {/* Tags */}
@@ -194,11 +212,8 @@ export default function RecipePage({ frontMatter }) {
                             type="number"
                             value={servings}
                             onChange={handleServingsChange}
-                            min="1"
-                            style={{
-                                width: "50px",
-                                backgroundColor: isDarkMode ? "#333" : "#eee",
-                            }}
+                            min={frontMatter.servings || 1}
+                            style={{ width: "50px", backgroundColor: isDarkMode ? "#333" : "#eee" }}
                         />
                     </div>
                     <table style={styles.ingredients}>
@@ -218,7 +233,7 @@ export default function RecipePage({ frontMatter }) {
                                             : { quantity, unit };
 
                                 const { quantity, unit } = convertUnit(
-                                    (ingredient.quantity / 1) * servings,
+                                    (ingredient.quantity / (frontMatter.servings || 1)) * servings,
                                     ingredient.unit
                                 );
 
@@ -235,17 +250,24 @@ export default function RecipePage({ frontMatter }) {
                     </table>
                 </div>
             </div>
-        </div>
+            <div>
+                <br />
+                <Comments />
+            </div>
+        </div >
+
     );
 }
 
 export async function getStaticPaths() {
     const files = fs.readdirSync(path.join("content"));
-    const paths = files.map((filename) => ({
-        params: {
-            slug: filename.replace(".md", ""),
-        },
-    }));
+    const paths =
+        files.filter((filename) => filename !== "rating.md") // Exclude "rating.md"
+            .map((filename) => ({
+                params: {
+                    slug: filename.replace(".md", ""),
+                },
+            }));
 
     return {
         paths,

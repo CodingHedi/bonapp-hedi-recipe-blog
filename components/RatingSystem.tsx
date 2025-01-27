@@ -8,7 +8,7 @@ const ALREADY_RATED = "You've already rated this recipe.";
 const FAIL_RATE = "Failed to submit rating";
 
 const RatingSystem: React.FC<RatingSystemProps> = ({ slug }) => {
-  const [ratings, setRatings] = useState<number[]>([]);
+  const [, setRatings] = useState<number[]>([]);
   const [average, setAverage] = useState<number>(0);
   const [hasRated, setHasRated] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");

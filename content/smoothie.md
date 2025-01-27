@@ -1,11 +1,11 @@
 ---
-title: "Spaghetti Aglio e Olio"
-date: "2025-01-02"
-author: "Jean Jack"
-image: "thumbnail/spaghetti.png"
-description: "A classic Italian pasta dish."
+title: "Smoothie"
+date: "2025-01-03"
+author: "hEdI"
+image: "thumbnail/smoothie.png"
+description: "A smoothie is a thick and creamy drink, prepared by blending fruits and/or vegetables with a liquid."
 videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA"
-tags: ["gluten", "pasta", "vegan"]
+tags: ["drink", "dessert", "vegan"]
 servings: 2
 ingredients:
   - name: Spaghetti

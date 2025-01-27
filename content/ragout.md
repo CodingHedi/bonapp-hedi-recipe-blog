@@ -1,11 +1,11 @@
 ---
-title: "Spaghetti Aglio e Olio"
-date: "2025-01-02"
-author: "Jean Jack"
-image: "thumbnail/spaghetti.png"
-description: "A classic Italian pasta dish."
+title: "Ragout"
+date: "2024-12-28"
+author: "Hédi"
+image: "thumbnail/ragout.png"
+description: "A ragout is a dish that is simmered, that is, cooked slowly over low heat for a long period. This slow cooking allows the flavors to blend and the ingredients to become tender and melt-in-your-mouth."
 videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA"
-tags: ["gluten", "pasta", "vegan"]
+tags: []
 servings: 2
 ingredients:
   - name: Spaghetti

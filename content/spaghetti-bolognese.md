@@ -1,11 +1,11 @@
 ---
-title: "Spaghetti Aglio e Olio"
-date: "2025-01-02"
-author: "Jean Jack"
-image: "thumbnail/spaghetti.png"
-description: "A classic Italian pasta dish."
-videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA"
-tags: ["gluten", "pasta", "vegan"]
+title: Spaghetti Bolognese
+date: "2025-01-07"
+author: Hédi
+image: thumbnail/spaghetti-bolognese.png
+description: A classic Italian pasta dish with a rich, savory meat sauce.
+videoUrl: https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA
+tags: [gluten, pasta, side, meal]
 servings: 2
 ingredients:
   - name: Spaghetti

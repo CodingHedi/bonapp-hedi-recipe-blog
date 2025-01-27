@@ -1,11 +1,11 @@
 ---
-title: "Spaghetti Aglio e Olio"
-date: "2025-01-02"
-author: "Jean Jack"
-image: "thumbnail/spaghetti.png"
-description: "A classic Italian pasta dish."
+title: "Chakchouka"
+date: "2024-12-16"
+author: "Hédi"
+image: "thumbnail/chakchouka.png"
+description: "Chakchouka is a dish originating from North Africa and the Middle East. It's a simple, tasty, and economical dish, often eaten for breakfast or brunch, but it can also be served for a light lunch or dinner."
 videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA"
-tags: ["gluten", "pasta", "vegan"]
+tags: []
 servings: 2
 ingredients:
   - name: Spaghetti

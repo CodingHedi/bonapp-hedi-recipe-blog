@@ -1,11 +1,11 @@
 ---
-title: "Spaghetti Aglio e Olio"
-date: "2025-01-02"
-author: "Jean Jack"
-image: "thumbnail/spaghetti.png"
-description: "A classic Italian pasta dish."
-videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=EKd9zTRj9d8PKQdA"
-tags: ["gluten", "pasta", "vegan"]
+title: "Bread"
+date: "2024-11-25"
+author: "Angry Hédi"
+image: "thumbnail/bread.png"
+description: "Bread is a staple food made from a mixture of flour, water, and yeast or leaven, then baked."
+videoUrl: "https://www.youtube.com/embed/uHGShqcAHlQ?si=c2n3_zVupE2nlOlv"
+tags: ["gluten"]
 servings: 2
 ingredients:
   - name: Spaghetti

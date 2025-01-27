@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import TimeAgo from "@/components/TimeAgo";
-import { Post } from "@/pages/Post";
+import { Post } from "@/utils/Post";
 import { useTheme } from "@/context/ThemeContext";
 
 interface CardProps {
@@ -53,7 +53,7 @@ const Card: React.FC<CardProps> = ({ post, handleTagClick }) => {
     );
   };
 
-  const styles = {
+  const styles: { [key: string]: React.CSSProperties } = {
     card: {
       borderRadius: "10px",
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -62,8 +62,8 @@ const Card: React.FC<CardProps> = ({ post, handleTagClick }) => {
       color: "var(--text-color)",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
       cursor: "pointer",
-      width: "100%", // Fixed card width
-      height: "100%", // Fixed card height
+      width: "100%",
+      height: "100%",
       display: "flex",
       flexDirection: "column",
     },
@@ -79,7 +79,7 @@ const Card: React.FC<CardProps> = ({ post, handleTagClick }) => {
     cardImage: {
       width: "100%",
     },
-    content: {
+    contentDisplay: {
       padding: "16px",
       flex: "1",
       display: "flex",
@@ -156,7 +156,7 @@ const Card: React.FC<CardProps> = ({ post, handleTagClick }) => {
           <img src={image} alt={title} style={styles.cardImage} />
         </div>
       </Link>
-      <div style={styles.content}>
+      <div style={styles.contentDisplay}>
         <Link href={`/posts/${slug}`}>
           <h3 style={styles.title}>{title}</h3>
         </Link>
