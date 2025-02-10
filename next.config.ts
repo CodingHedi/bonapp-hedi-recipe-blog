@@ -4,11 +4,14 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
 
-  compiler:  {
-    styledComponents:{
-      minify:false,
+  images: {
+    unoptimized: true,
+  },
+  compiler: {
+    styledComponents: {
+      minify: false,
     },
   },
 };
- 
+
 export default nextConfig;

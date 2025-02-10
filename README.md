@@ -57,7 +57,7 @@ steps:
 The following fields are required for each recipe : `title`, `date`, `author`, `ingredients` and `steps`.
 
 The `videoUrl:` contains an embeded YouTube video URL.
-If you want to add a video who's not embeded you should modifiy [`[slug].js here`](https://github.com/CodingHedi/bonapp-hedi-recipe-blog/blob/main/pages/posts/%5Bslug%5D.js#L98).
+If you want to add a video who's not embeded you should modifiy [`[slug].js here`](https://github.com/CodingHedi/bonapp-hedi-recipe-blog/blob/main/pages/posts/%5Bslug%5D.js#L114).
 
 Then, add a `rating.md` to the `/content` directory. Here's the file :
 
@@ -80,4 +80,90 @@ You can now open [http://localhost:3000](http://localhost:3000) with your browse
 
 ## Build
 
+### Next.js build
+
+To build the app, run the following command:
+
+`npm run build`
+
+If the compilation is successful, you should see the following message :
+
+```bash
+ ✓ Generating static pages (X/X)
+ ✓ Collecting build traces
+ ✓ Finalizing page optimization
+
+Route (pages)                             Size     First Load JS
+┌ ● /                                     37.1 kB         133 kB
+├   /_app                                 0 B            96.1 kB
+├ ○ /404                                  189 B          96.3 kB
+├ ƒ /api/rating                           0 B            96.1 kB
+└ ● /posts/[slug] (1610 ms)               3.4 kB         99.5 kB
+    └ [+X more paths]
++ First Load JS shared by all             98 kB
+  ├ chunks/framework-a4ddb9b21624b39b.js  57.5 kB
+  ├ chunks/main-dc3396de66256727.js       33.8 kB
+  └ other shared chunks (total)           6.69 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+```
+
+Now that the app is building, let's use Docker to deploy it.
+
+### Docker
+
+Verify that you have a Dockerfile in the root directory of the project with the following content :
+
+```bash
+FROM node:22-alpine
+
+RUN npm install -g pnpm
+
+COPY . .
+
+RUN pnpm install
+
+RUN pnpm run build
+
+CMD ["pnpm", "run", "start"]
+```
+
+`podman build -t ghcr.io/codinghedi/bonapphedi .`
+
+Be carefull, the image must be named following this pattern `GHCR.IO/OWNER/NAME:TAG` but the tag is optional.
+
 ## Deploy
+
+The Docker image is available on Github Packages : [https://github.com/CodingHedi?tab=packages](https://github.com/CodingHedi?tab=packages)
+
+Pull it with the following command :
+
+`podman pull ghcr.io/codinghedi/bonapphedi:latest`
+
+To run a container, run the following command :
+
+`podman run -it -p 3000:3000 bonapphedi`
+
+To run a deamonized container, run the following command :
+
+`podman run -d -p 3000:3000 bonapphedi`
+
+## Debug
+
+To list the containers
+
+`podman container list`
+
+To kill it
+
+`podman kill -a`
+
+To enter a specific container
+
+`podman exec -it <CONTAINER_ID> sh`
+
+To list all the listenning ports on the VPS
+
+`netstat -tlnp`
