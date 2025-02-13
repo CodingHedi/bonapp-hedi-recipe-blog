@@ -5,6 +5,9 @@ ratings: {
   ],
   "bread": [
     4
+  ],
+  "ragout": [
+    5
   ]
 }
 ---
