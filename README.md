@@ -138,6 +138,14 @@ Be carefull, the image must be named following this pattern `GHCR.IO/OWNER/NAME:
 
 The Docker image is available on Github Packages : [https://github.com/CodingHedi?tab=packages](https://github.com/CodingHedi?tab=packages)
 
+Create a `screen` with the screen command on the VPS :
+
+`screen -s bonapphedi`
+
+To switch to the `screen` :
+
+`screen -x bonapphedi`
+
 Pull it with the following command :
 
 `podman pull ghcr.io/codinghedi/bonapphedi:latest`
@@ -167,3 +175,11 @@ To enter a specific container
 To list all the listenning ports on the VPS
 
 `netstat -tlnp`
+
+`podman run -d --name=bonapphedi --rm -p 3000:3000 bonapphedi`
+
+`podman container list -a`
+
+`podman container rm bonapphedi`
+
+`podman cp bonapphedi:/content/rating.md .`

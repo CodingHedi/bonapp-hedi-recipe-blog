@@ -29,22 +29,25 @@ export default function HeroCarousel({ recipes }) {
             backgroundPosition: 'center',
         },
         content: {
+            backdropFilter: 'blur(5px)',
             position: 'absolute',
             bottom: '20px',
             left: '20px',
-            backgroundColor: isDarkMode ? 'rgba(250, 250, 250, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+            backgroundColor: isDarkMode ? 'rgba(250, 250, 250, 0.3)' : 'rgba(0, 0, 0, 0.3)',
             padding: '20px',
-            borderRadius: '5px',
+            marginLeft: '30px',
+            borderRadius: '10px',
             color: isDarkMode ? '#000' : '#fff',
             maxWidth: '60%',
         },
         title: {
-            fontSize: '24px',
-            margin: '0',
+            fontSize: '36px',
         },
         description: {
             fontSize: '16px',
-            marginTop: '10px', marginBottom: '10px',
+            marginBottom: '10px',
+            paddingTop: '10px',
+            paddingBottom: '10px',
 
         },
         button: {
